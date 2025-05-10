@@ -25,17 +25,13 @@ def odd_or_even(current_rod, rods):
 
 #When current rod is 3 and needs to be +1, it should go back to rod 1 and vice versa
 def current_rod_change(current_rod, decision):
+    # Makes sure current_rod value doesn't go over 2 and under 0 as well
     if decision == "+":
-        current_rod += 1
+        return (current_rod + 1) % 3
     elif decision == "-":
-        current_rod -= 1
+        return (current_rod - 1) % 3
+    return None
 
-    #Makes sure current_rod value doesn't go over 2 and under 0
-    if current_rod < 0:
-        current_rod = 2
-    elif current_rod > 2:
-        current_rod = 0
-    return current_rod
 
 #Checks if other rods are empty so an error does not occur
 def left_rod_check(rods, current_rod):
@@ -95,7 +91,7 @@ def basic_solve(disk_count):
                 current_rod = current_rod_change(current_rod, "-")
 
 #The user enters the number of disks on the first(left rod)
-diskCount = int(input("Enter the number of starting disks in the first rod: "))
+diskCount = int(input("Enter the number of initial disks in the first rod: "))
 basic_solve(diskCount)
 
 
